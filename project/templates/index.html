@@ -1,0 +1,32 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Bot WebApp</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Добро пожаловать в игру!</h1>
+    <button id="playButton">Играть</button>
+    <button id="resetButton">Завершить</button>
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#playButton').click(function() {
+                $.post("/play", function(data) {
+                    $('#result').html('Коэффициент: ' + data.coefficient + 'x');
+                });
+            });
+
+            $('#resetButton').click(function() {
+                $.post("/reset", function(data) {
+                    $('#result').html('');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
